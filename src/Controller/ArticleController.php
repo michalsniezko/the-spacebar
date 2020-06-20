@@ -7,8 +7,6 @@ use App\Repository\ArticleRepository;
 use App\Service\MarkdownHelper;
 use App\Service\SlackClient;
 use Doctrine\ORM\EntityManagerInterface;
-use Nexy\Slack\Client;
-use Psr\Cache\InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,9 +16,8 @@ class ArticleController extends AbstractController
 {
     /** @var MarkdownHelper */
     private $markdownHelper;
-    /**
-     * @var SlackClient
-     */
+
+    /** @var SlackClient */
     private $slackClient;
 
     /**
@@ -72,11 +69,13 @@ class ArticleController extends AbstractController
     /**
      * @Route("/news/{slug}/heart", name="article_toggle_heart", methods={"POST"})
      */
-    public function toggleArticleHeart($slug, LoggerInterface $logger)
+    public function toggleArticleHeart(Article $article, LoggerInterface $logger, EntityManagerInterface $em)
     {
-        $logger->info('Article is being hearted!');
-        // TODO - actually heart/unheart the article
+        $article->incrementHeartCount();
+        $em->flush();
 
-        return $this->json(['hearts' => rand(5, 100)]);
+        $logger->info('Article is being hearted!');
+
+        return $this->json(['hearts' => $article->getHeartCount()]);
     }
 }
