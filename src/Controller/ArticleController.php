@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Service\MarkdownHelper;
+use App\Service\SlackClient;
+use Nexy\Slack\Client;
 use Psr\Cache\InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,14 +15,20 @@ class ArticleController extends AbstractController
 {
     /** @var MarkdownHelper */
     private $markdownHelper;
+    /**
+     * @var SlackClient
+     */
+    private $slackClient;
 
     /**
      * ArticleController constructor.
      * @param MarkdownHelper $markdownHelper
+     * @param SlackClient $slackClient
      */
-    public function __construct(MarkdownHelper $markdownHelper)
+    public function __construct(MarkdownHelper $markdownHelper, SlackClient $slackClient)
     {
         $this->markdownHelper = $markdownHelper;
+        $this->slackClient = $slackClient;
     }
 
     /**
@@ -39,6 +47,10 @@ class ArticleController extends AbstractController
      */
     public function show(string $slug)
     {
+        if ($slug === 'khan') {
+            $this->slackClient->sendMessage('Khan', 'This is my message now!');
+        }
+
         $comments = [
             'I ate a normal rock once. It did NOT taste like bacon!',
             'Wohoo! I\'m going on an all-asteroid diet!',

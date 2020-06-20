@@ -6,6 +6,8 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "knplabs/knp-markdown-bundle": "^1.8",
+        "nexylan/slack-bundle": "2.2.0",
+        "php-http/guzzle6-adapter": "1.1.1",
         "sensio/framework-extra-bundle": "^5.5",
         "symfony/asset": "4.4.*",
         "symfony/console": "4.4.*",
@@ -64,7 +66,7 @@
     },
     "extra": {
         "symfony": {
-            "allow-contrib": false,
+            "allow-contrib": true,
             "require": "4.4.*"
         }
     }
