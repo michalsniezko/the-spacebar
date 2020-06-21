@@ -14,7 +14,7 @@
 
             <form>
                 <div class="input-group mb-3">
-                    <input type="text" name="q" class="form-control" placeholder="Search..."/>
+                    <input type="text" name="q" class="form-control" placeholder="Search..." value="{{ app.request.query.get('q') }}"/>
 
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-outline-secondary">
@@ -51,6 +51,8 @@
                             {{ comment.createdAt|ago }}
                         </td>
                     </tr>
+                {% else %}
+                    <td colspan="4" class="text-center">No results for <b>{{ app.request.query.get('q')  }}</b></td>
                 {% endfor %}
                 </tbody>
             </table>
