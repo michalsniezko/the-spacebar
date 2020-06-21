@@ -390,7 +390,13 @@
     "symfony/orm-pack": {
         "version": "v1.0.8"
     },
+    "symfony/polyfill-intl-grapheme": {
+        "version": "v1.17.0"
+    },
     "symfony/polyfill-intl-idn": {
+        "version": "v1.17.0"
+    },
+    "symfony/polyfill-intl-normalizer": {
         "version": "v1.17.0"
     },
     "symfony/polyfill-mbstring": {
@@ -427,6 +433,9 @@
     },
     "symfony/stopwatch": {
         "version": "v4.4.10"
+    },
+    "symfony/string": {
+        "version": "v5.1.2"
     },
     "symfony/templating": {
         "version": "v4.4.10"
@@ -491,6 +500,9 @@
         "version": "v4.4.10"
     },
     "twig/extra-bundle": {
+        "version": "v3.0.3"
+    },
+    "twig/string-extra": {
         "version": "v3.0.3"
     },
     "twig/twig": {
