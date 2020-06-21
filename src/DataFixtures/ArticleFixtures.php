@@ -27,7 +27,7 @@ class ArticleFixtures extends BaseFixtures
 
     protected function loadData(ObjectManager $manager)
     {
-        $this->createMany(Article::class, 10, function (Article $article, $count) use ($manager) {
+        $this->createMany(Article::class, 10, function (Article $article) use ($manager) {
 
             $article
                 ->setTitle($this->faker->randomElement(self::$articleTitles))
@@ -60,7 +60,6 @@ EOF
             $comment2->setContent('Wohoo! I\'m going on an all-asteroid diet!');
             $comment2->setArticle($article);
             $manager->persist($comment2);
-
         });
 
         $manager->flush();
