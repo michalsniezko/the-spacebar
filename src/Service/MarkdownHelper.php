@@ -28,8 +28,7 @@ class MarkdownHelper
      * @param LoggerInterface $markdownLogger
      * @param bool $isDebug
      */
-    public function __construct
-    (
+    public function __construct(
         MarkdownInterface $markdown,
         AdapterInterface $cache,
         LoggerInterface $markdownLogger,
@@ -48,11 +47,11 @@ class MarkdownHelper
      */
     public function parse(string $source): string
     {
-        if(stripos($source, 'bacon') !== false) {
+        if (stripos($source, 'bacon') !== false) {
             $this->logger->info('They\'re talking about bacon again!');
         }
 
-        if($this->isDebug) {
+        if ($this->isDebug) {
             return $this->markdown->transform($source);
         }
 

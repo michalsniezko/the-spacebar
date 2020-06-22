@@ -40,4 +40,3 @@ class CommentRepository extends ServiceEntityRepository
             ->orderBy('c.createdAt', 'DESC');
     }
 }
-

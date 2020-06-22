@@ -3,7 +3,6 @@
 
 namespace App\Helper;
 
-
 use Psr\Log\LoggerInterface;
 
 trait LoggerTrait

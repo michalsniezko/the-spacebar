@@ -27,10 +27,11 @@ class ArticleFixtures extends BaseFixture implements DependentFixtureInterface
 
     protected function loadData(ObjectManager $manager)
     {
-        $this->createMany(10, 'main_articles', function($count) use ($manager) {
+        $this->createMany(10, 'main_articles', function ($count) use ($manager) {
             $article = new Article();
             $article->setTitle($this->faker->randomElement(self::$articleTitles))
-                ->setContent(<<<EOF
+                ->setContent(
+                    <<<EOF
 Spicy **jalapeno bacon** ipsum dolor amet veniam shank in dolore. Ham hock nisi landjaeger cow,
 lorem proident [beef ribs](https://baconipsum.com/) aute enim veniam ut cillum pork chuck picanha. Dolore reprehenderit
 labore minim pork belly spare ribs cupim short loin in. Elit exercitation eiusmod dolore cow
@@ -48,7 +49,7 @@ strip steak pork belly aliquip capicola officia. Labore deserunt esse chicken lo
 cow est ribeye adipisicing. Pig hamburger pork belly enim. Do porchetta minim capicola irure pancetta chuck
 fugiat.
 EOF
-            );
+                );
 
             // publish most articles
             if ($this->faker->boolean(70)) {
