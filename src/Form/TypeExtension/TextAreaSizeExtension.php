@@ -18,7 +18,6 @@ class TextAreaSizeExtension implements FormTypeExtensionInterface
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options)
@@ -28,7 +27,6 @@ class TextAreaSizeExtension implements FormTypeExtensionInterface
 
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
-        // TODO: Implement finishView() method.
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -45,8 +43,5 @@ class TextAreaSizeExtension implements FormTypeExtensionInterface
 
     public function __call($name, $arguments)
     {
-        // TODO: Implement @method iterable getExtendedTypes()
     }
-
-
 }

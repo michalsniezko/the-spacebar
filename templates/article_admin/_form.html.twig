@@ -3,7 +3,9 @@
 
     {{ form_row(articleForm.title, {label: 'Article title'}) }}
     {{ form_row(articleForm.content ) }}
+{% if articleForm.publishedAt is defined %}
     {{ form_row(articleForm.publishedAt) }}
+{% endif %}
     {{ form_row(articleForm.author) }}
 
 <button type="submit" class="btn btn-primary">{{ button_text }}</button>
