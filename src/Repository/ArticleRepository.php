@@ -36,7 +36,7 @@ class ArticleRepository extends ServiceEntityRepository
         return $this->addIsPublishedQueryBuilder()
             ->leftJoin('a.tags', 't')
             ->addSelect('t')
-            ->orderBy('a.published_at', 'DESC')
+            ->orderBy('a.publishedAt', 'DESC')
             ->getQuery()
             ->getResult();
     }
@@ -48,7 +48,7 @@ class ArticleRepository extends ServiceEntityRepository
     private function addIsPublishedQueryBuilder(QueryBuilder $qb = null): ?QueryBuilder
     {
         return $this->getOrCreateQueryBuilder($qb)
-            ->andWhere('a.published_at IS NOT NULL');
+            ->andWhere('a.publishedAt IS NOT NULL');
     }
 
     /**
