@@ -13,10 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity(
- *     fields={"email"},
- *     message="I think you've already registered!"
- * )
+ * @UniqueEntity(fields={"email"}, message="I think you've already registered!")
  */
 class User implements UserInterface
 {
@@ -66,6 +63,11 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=Article::class, mappedBy="author")
      */
     private $articles;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $agreedTermsAt;
 
     public function __construct()
     {
@@ -250,5 +252,17 @@ class User implements UserInterface
     public function __toString(): string
     {
         return $this->firstName;
+    }
+
+    public function getAgreedTermsAt(): ?\DateTimeInterface
+    {
+        return $this->agreedTermsAt;
+    }
+
+    public function agreeToTerms(): self
+    {
+        $this->agreedTermsAt = new \DateTime();
+
+        return $this;
     }
 }
