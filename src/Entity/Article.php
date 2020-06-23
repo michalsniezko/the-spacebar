@@ -43,7 +43,7 @@ class Article
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $published_at;
+    private $publishedAt;
 
     /**
      * @ORM\Column(type="integer")
@@ -122,12 +122,12 @@ class Article
 
     public function getPublishedAt(): ?\DateTimeInterface
     {
-        return $this->published_at;
+        return $this->publishedAt;
     }
 
     public function setPublishedAt(?\DateTimeInterface $published_at): self
     {
-        $this->published_at = $published_at;
+        $this->publishedAt = $published_at;
 
         return $this;
     }
@@ -245,5 +245,10 @@ class Article
         $this->author = $author;
 
         return $this;
+    }
+
+    public function isPublished(): bool
+    {
+        return $this->publishedAt !== null;
     }
 }
