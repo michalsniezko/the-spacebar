@@ -86,9 +86,15 @@ class ArticleAdminController extends BaseController
     /**
      * @param Request $request
      * @Route("/admin/article/location-select", name="admin_article_location_select")
+     * @return Response
+     * @IsGranted("ROLE_USER")
      */
     public function getSpecificLocationSelect(Request $request)
     {
+        if (!$this->isGranted('ROLE_ADMIN_ARTICLE') && $this->getUser()->getArticles()->isEmpty()) {
+            throw $this->createAccessDeniedException();
+        }
+
         $article = new Article();
         $article->setLocation($request->query->get('location'));
         $form = $this->createForm(ArticleFormType::class, $article);

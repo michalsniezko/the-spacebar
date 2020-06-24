@@ -285,6 +285,9 @@ class Article
     public function setLocation(?string $location): self
     {
         $this->location = $location;
+        if (!$location || $location === 'interstellar_space') {
+            $this->specificLocationName = null;
+        }
 
         return $this;
     }
