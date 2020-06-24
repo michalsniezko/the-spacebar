@@ -82,4 +82,24 @@ class ArticleAdminController extends BaseController
             'articles' => $articles,
         ]);
     }
+
+    /**
+     * @param Request $request
+     * @Route("/admin/article/location-select", name="admin_article_location_select")
+     */
+    public function getSpecificLocationSelect(Request $request)
+    {
+        $article = new Article();
+        $article->setLocation($request->query->get('location'));
+        $form = $this->createForm(ArticleFormType::class, $article);
+
+        // no field? Return an empty response
+        if (!$form->has('specificLocationName')) {
+            return new Response(null, Response::HTTP_NO_CONTENT);
+        }
+
+        return $this->render('article_admin/_specific_location_name.html.twig', [
+            'articleForm' => $form->createView()
+        ]);
+    }
 }
